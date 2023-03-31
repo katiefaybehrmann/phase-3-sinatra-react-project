@@ -32,9 +32,12 @@ class ApplicationController < Sinatra::Base
     record.to_json
   end
 
-  patch '/records/:id' do
+  patch '/genres/:genre_id/records/:id' do
     record = Record.find(params[:id])
     record.update(
+      artist: params[:artist],
+      release_date: params[:release_date],
+      image_url: params[:image_url],
       listened: params[:listened],
       rating: params[:rating]
     )
