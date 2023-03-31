@@ -7,10 +7,10 @@ class ApplicationController < Sinatra::Base
     genres.to_json(include: :records)
   end
 
-  get "/records" do 
-    records = Record.all
-    records.to_json
-  end
+  # get "/records" do 
+  #   records = Record.all
+  #   records.to_json
+  # end
 
   post '/genres' do 
     genre = Genre.create(
@@ -20,13 +20,13 @@ class ApplicationController < Sinatra::Base
     genre.to_json
   end
 
-  post '/records' do 
-    record = Record.create(
+  post '/genres/:genre_id/records' do 
+    genre=Genre.find(params[:genre_id])
+    record = genre.records.create(
       artist: params[:artist],
       release_date: params[:release_date],
       image_url: params[:image_url],
       listened: params[:listened],
-      genre_id: params[:genre_id],
       rating: params[:rating]
     )
     record.to_json
