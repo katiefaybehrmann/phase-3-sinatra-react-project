@@ -44,7 +44,7 @@ class ApplicationController < Sinatra::Base
     record.to_json
   end
 
-  delete '/records/:id' do 
+  delete '/genres/:genre_id/records/:id' do 
     record = Record.find(params[:id])
     record.destroy
     record.to_json
