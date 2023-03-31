@@ -29,6 +29,7 @@ class ApplicationController < Sinatra::Base
       genre_id: params[:genre_id],
       rating: params[:rating]
     )
+    record.to_json
   end
 
   patch '/records/:id' do
